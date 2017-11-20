@@ -65,25 +65,29 @@ class CheckinList extends React.Component {
                     </Text> : null
                 }
 
-                {checkins.filter(node => !node.canceled).map(node =>
-                    <View key={node.id}>
+                {checkins.filter(node => !node.canceled).map(node => {
+                    const technologies = (displayUser && node.user.technologies && node.user.technologies.edges
+                        && node.user.technologies.edges) || []
+
+                    return (<View key={node.id}>
                         <TouchableOpacity onPress={() => displayUser ?
                             this.props.navigation.navigate('Profile', {userId: node.user.id, navigateBack: true})
-                        : displayPlace ?
+                            : displayPlace ?
                                 null : //this.props.navigation.navigate('Map', {placeId: node.place.id, navigateBack: true}) :
-                        null}>
+                                null}>
                             <Text style={{color: node.checkoutAt ? '#848484' : COLORS.GREEN,}}>
-                                {displayPlace ? `@ ${node.place.name.toUpperCase()}` : null}
+                                {displayPlace ? `${!node.checkoutAt ? 'ONLINE ' : '' } @ ${node.place.name.toUpperCase()}` : null}
                                 {displayUser ? node.user.name.toUpperCase() : null}
                                 {node.description && node.checkoutAt ?
                                     ` - worked on ${node.description}` :
                                     node.description ?
-                                        ` - is online and working on ${node.description}` : null}
-                                {displayUser ? `; Skill Set: ` : null}
+                                        ` - working on ${node.description}` :
+                                    !node.checkoutAt && !displayPlace ? ' is Working now' : null
+                                }
+                                {displayUser && technologies.length ? `; Skill Set: ` : null}
                             </Text>
 
-                            {displayUser && node.user.technologies && node.user.technologies.edges
-                            && node.user.technologies.edges.length ?
+                            {technologies.length ?
                                 <View style={{marginTop: 5}}>
                                     <TechnologiesBlock
                                         edit={false}
@@ -138,7 +142,8 @@ class CheckinList extends React.Component {
                             width: '10%',
                         }}></View>
 
-                    </View>)}
+                    </View>)
+                })}
             </View>
         )
     }
