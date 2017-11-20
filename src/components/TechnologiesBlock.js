@@ -27,17 +27,6 @@ class TechnologyTag extends React.Component {
                         size={16} />
                  : null }
             </Text>
-            { edit ? <View style={{margin: 0, padding: 0,
-                borderLeftWidth: 1, paddingTop: 5, marginRight: 5,
-                borderLeftColor: COLORS.GREY_LIGHTEN_1,
-                width: 14, height: 28}}>
-                <MaterialIcons
-                    style={{
-                        color: COLORS.GREY_LIGHTEN_1
-                    }}
-                    name={"close"}
-                    size={16} />
-            </View> : null }
         </TouchableOpacity>
     }
 }
@@ -56,7 +45,12 @@ class TechnologiesPicker extends React.Component {
             }
         )
 
-        return <View>
+        return <View style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginRight: 25,
+            marginBottom: 9,
+        }}>
             {this.props.technologies.map((item,index) => {
                 return <TechnologyTag key={index}
                                       onPress={this.props.removeTechnology}
