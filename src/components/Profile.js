@@ -18,6 +18,7 @@ import {NavigationActions} from 'react-navigation';
 import UpdateUserMutation from '../mutations/UpdateUserMutation'
 import TechnologiesBlock from "./TechnologiesBlock";
 import CheckinList from "./CheckinList";
+import main from "../styles/main";
 
 class Profile extends React.Component {
 
@@ -31,7 +32,8 @@ class Profile extends React.Component {
         edit: false,
         text: "testing",
         technologies: [],
-        technologiesToRemove: []
+        technologiesToRemove: [],
+        wait: false
     }
 
     componentDidMount() {
@@ -122,6 +124,8 @@ class Profile extends React.Component {
 
         if (profilePic) {
 
+            this.setState({wait: true})
+
             const file = {
                 uri: profilePic,
                 name: uuidv4() + ".jpg",
@@ -140,6 +144,7 @@ class Profile extends React.Component {
             const s3Res = await RNS3.put(file, options);
 
             if(s3Res.status !== 201) {
+                this.setState({wait: false})
                 console.log('\n>>>>> Fail to upload profile pic to S3', s3Res);
                 alert('Fail to upload profile picture, please try again later');
                 return;
@@ -149,9 +154,13 @@ class Profile extends React.Component {
                 options.keyPrefix + file.name;
         }
 
+        this.setState({wait: true})
+
         UpdateUserMutation(userForm.id, userForm.name,
             userForm.bio, profilePicUrl, techs, oldTechsIds,
             async (err, res) => {
+                this.setState({wait: false})
+
                 if(err) {
                     console.log('Error while updating Profile', err);
                     alert('Error while updating Profile: ' + err);
@@ -256,7 +265,7 @@ class Profile extends React.Component {
                                 label="EMAIL"
                                 value={user.email}
                                 onChange={(v) => this._setUserField('email', v)}
-                                readOnly={!edit} />
+                                readOnly={true} />
                         </View>
                     </View>
 
@@ -308,13 +317,18 @@ class Profile extends React.Component {
                                     </Text>
                                 </TouchableOpacity> : null }
                             </View> : null}
-
-                        { edit ? <View>
-                            <Button title={'Submit Profile Update'}
-                                    onPress={this._submitProfile} />
-                        </View> : null}
                     </View>
                 </ScrollView>
+
+                { edit ? <View>
+                    <TouchableOpacity
+                        style={main.bottomPrimaryButton}
+                        onPress={!this.state.wait ? this._submitProfile : () => null} >
+                        <Text style={main.primaryButtonText}>
+                            {this.state.wait ? 'Please wait...' : 'Submit' }
+                        </Text>
+                    </TouchableOpacity>
+                </View> : null}
             </View>
         );
     }

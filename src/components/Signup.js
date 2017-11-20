@@ -360,7 +360,7 @@ export default class Signup extends React.Component {
                 onError={console.warn}
             />
 
-        return <View style={{paddingVertical: 65,
+        return <View style={{paddingVertical: 35,
             width: '100%',height: '100%',
             alignItems: 'center'}}>
             <View style={{
@@ -374,9 +374,9 @@ export default class Signup extends React.Component {
                     style={{flex: 10}}
                     source={require('../../assets/images/Background.jpg')} />
             </View>
-            <Text style={{fontFamily: 'space-mono-bold', fontSize: 32, color: 'white'}}>WHERE THE HACK</Text>
+            <Text style={{fontFamily: 'space-mono-bold', fontSize: 32, color: 'white', marginTop: 30}}>WHERE THE HACK</Text>
             <Text style={{fontFamily: 'open-sans', color: 'white', textAlign: 'center',
-                marginTop: 20, marginBottom: 60, fontSize: 22,}}>
+                marginTop: 10, marginBottom: 20, fontSize: 22,}}>
                 It's a New and Fun Way to
                 {"\n"}Empower Your Network and
                 {"\n"}Finish Your Projects
