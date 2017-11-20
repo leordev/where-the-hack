@@ -86,6 +86,25 @@ class MapMarkerList extends React.Component {
         return checkedPlaces.length ? checkedPlaces[0].node.id : null
     }
 
+    _hasPeopleOnline = (node) => {
+        const { userId } = this.state
+
+        console.log('\n>>>> my maplist userId ', userId)
+
+
+        if(node.checkins && node.checkins.edges.length) {
+
+            return node.checkins.edges.filter((checkin) => {
+
+                const checkinNode = checkin.node
+
+                return !checkinNode.checkoutAt && !checkinNode.canceled
+            }).length
+        }
+
+        return false
+    }
+
     render() {
 
         const placesEdges = this.props.viewer.allPlaces.edges
@@ -102,6 +121,8 @@ class MapMarkerList extends React.Component {
         return (
             <View>
                 {placesEdges.map(({node}, index) => {
+                    const hasPeopleOnline = this._hasPeopleOnline(node)
+
                     return (
                         <MapView.Marker
                             key={node.id}
@@ -126,10 +147,11 @@ class MapMarkerList extends React.Component {
                                         shadowOffset: {height: 0, width: 0},
                                         borderRadius: 100,
                                         padding: 5,
-                                        borderColor: checkinPlace === node.id ? COLORS.RED : '#4989fc',
+                                        borderColor: checkinPlace === node.id ? COLORS.RED :
+                                            hasPeopleOnline ? COLORS.GREEN : '#4989fc',
                                         borderWidth: 2,
                                         backgroundColor: '#eaeaea'}}>
-                                        <PlaceIcon type={node.type}
+                                        <PlaceIcon type={node.type} hasPeopleOnline={hasPeopleOnline}
                                                    checkedIn={checkinPlace === node.id} />
                                     </View>
                                 </TouchableHighlight>
