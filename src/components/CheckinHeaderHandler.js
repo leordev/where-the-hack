@@ -381,17 +381,9 @@ export default class CheckinHeaderHandler extends React.Component {
     }
 
     _loadingRender = () => {
-        return <Animatable.View
-            animation="rotate"
-            duration={1000}
-            easing="linear"
-            iterationCount="infinite">
-            <MaterialIcons
-                name={"refresh"}
-                size={32}
-                style={{marginRight: 15,
-                    marginLeft: 15}} />
-        </Animatable.View>
+        return <View style={{padding: 50}}>
+            <Text>Please wait... Loading...</Text>
+        </View>
     }
 
     render() {
