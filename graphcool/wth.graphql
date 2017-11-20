@@ -1,0 +1,4445 @@
+input AddToPlaceCheckinReviewPlaceReviewInput {
+  checkinCheckinId: ID!
+  placeReviewPlaceReviewId: ID!
+  clientMutationId: String!
+}
+
+type AddToPlacesCheckinsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placePlace: Place
+  checkinsCheckin: Checkin
+  placePlaceEdge: PlaceEdge
+  checkinsCheckinEdge: CheckinEdge
+}
+
+input AddToPlacesCheckinsPlaceInput {
+  checkinsCheckinId: ID!
+  placePlaceId: ID!
+  clientMutationId: String!
+}
+
+type AddToPlacesReviewsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placePlace: Place
+  reviewsPlaceReview: PlaceReview
+  placePlaceEdge: PlaceEdge
+  reviewsPlaceReviewEdge: PlaceReviewEdge
+}
+
+input AddToPlacesReviewsPlaceInput {
+  reviewsPlaceReviewId: ID!
+  placePlaceId: ID!
+  clientMutationId: String!
+}
+
+type AddToPlacesSchedulesPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placePlace: Place
+  schedulesPlaceSchedule: PlaceSchedule
+  placePlaceEdge: PlaceEdge
+  schedulesPlaceScheduleEdge: PlaceScheduleEdge
+}
+
+input AddToPlacesSchedulesPlaceInput {
+  schedulesPlaceScheduleId: ID!
+  placePlaceId: ID!
+  clientMutationId: String!
+}
+
+type AddToPlacesTypesPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  typePlaceType: PlaceType
+  placesPlace: Place
+  typePlaceTypeEdge: PlaceTypeEdge
+  placesPlaceEdge: PlaceEdge
+}
+
+input AddToPlacesTypesPlaceTypeInput {
+  placesPlaceId: ID!
+  typePlaceTypeId: ID!
+  clientMutationId: String!
+}
+
+input AddToUserCheckinReviewUserReviewInput {
+  checkinCheckinId: ID!
+  userReviewUserReviewId: ID!
+  clientMutationId: String!
+}
+
+type AddToUserPostedPlacesPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  postedByUser: User
+  postedPlacesPlace: Place
+  postedByUserEdge: UserEdge
+  postedPlacesPlaceEdge: PlaceEdge
+}
+
+input AddToUserPostedPlacesUserInput {
+  postedPlacesPlaceId: ID!
+  postedByUserId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersCheckinsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userUser: User
+  checkinsCheckin: Checkin
+  userUserEdge: UserEdge
+  checkinsCheckinEdge: CheckinEdge
+}
+
+input AddToUsersCheckinsUserInput {
+  checkinsCheckinId: ID!
+  userUserId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersOnTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  technologyTechnology: Technology
+  usersUserTechnology: UserTechnology
+  technologyTechnologyEdge: TechnologyEdge
+  usersUserTechnologyEdge: UserTechnologyEdge
+}
+
+input AddToUsersOnTechnologyTechnologyInput {
+  usersUserTechnologyId: ID!
+  technologyTechnologyId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersPostedPlacesReviewsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  postedByUser: User
+  postedPlacesReviewsPlaceReview: PlaceReview
+  postedByUserEdge: UserEdge
+  postedPlacesReviewsPlaceReviewEdge: PlaceReviewEdge
+}
+
+input AddToUsersPostedPlacesReviewsUserInput {
+  postedPlacesReviewsPlaceReviewId: ID!
+  postedByUserId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersPostedReviewsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  postedByUser: User
+  postedReviewsUserReview: UserReview
+  postedByUserEdge: UserEdge
+  postedReviewsUserReviewEdge: UserReviewEdge
+}
+
+input AddToUsersPostedReviewsUserInput {
+  postedReviewsUserReviewId: ID!
+  postedByUserId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersReviewsPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userUser: User
+  reviewsUserReview: UserReview
+  userUserEdge: UserEdge
+  reviewsUserReviewEdge: UserReviewEdge
+}
+
+input AddToUsersReviewsUserInput {
+  reviewsUserReviewId: ID!
+  userUserId: ID!
+  clientMutationId: String!
+}
+
+type AddToUsersTechnologiesPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userUser: User
+  technologiesUserTechnology: UserTechnology
+  userUserEdge: UserEdge
+  technologiesUserTechnologyEdge: UserTechnologyEdge
+}
+
+input AddToUsersTechnologiesUserInput {
+  technologiesUserTechnologyId: ID!
+  userUserId: ID!
+  clientMutationId: String!
+}
+
+type Checkin implements Node {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  id: ID!
+  place(filter: PlaceFilter): Place!
+  placeReview(filter: PlaceReviewFilter): PlaceReview
+  rejectionDescription: String
+  user(filter: UserFilter): User!
+  userReview(filter: UserReviewFilter): UserReview
+}
+
+# A connection to a list of items.
+type CheckinConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [CheckinEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type CheckinEdge {
+  # The item at the end of the edge.
+  node: Checkin!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input CheckinFilter {
+  # Logical AND on all given filters.
+  AND: [CheckinFilter!]
+
+  # Logical OR on all given filters.
+  OR: [CheckinFilter!]
+  approvalTime: DateTime
+
+  # All values that are not equal to given value.
+  approvalTime_not: DateTime
+
+  # All values that are contained in given list.
+  approvalTime_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  approvalTime_not_in: [DateTime!]
+
+  # All values less than the given value.
+  approvalTime_lt: DateTime
+
+  # All values less than or equal the given value.
+  approvalTime_lte: DateTime
+
+  # All values greater than the given value.
+  approvalTime_gt: DateTime
+
+  # All values greater than or equal the given value.
+  approvalTime_gte: DateTime
+  approved: Boolean
+
+  # All values that are not equal to given value.
+  approved_not: Boolean
+  canceled: Boolean
+
+  # All values that are not equal to given value.
+  canceled_not: Boolean
+  checkinAt: DateTime
+
+  # All values that are not equal to given value.
+  checkinAt_not: DateTime
+
+  # All values that are contained in given list.
+  checkinAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  checkinAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  checkinAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  checkinAt_lte: DateTime
+
+  # All values greater than the given value.
+  checkinAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  checkinAt_gte: DateTime
+  checkoutAt: DateTime
+
+  # All values that are not equal to given value.
+  checkoutAt_not: DateTime
+
+  # All values that are contained in given list.
+  checkoutAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  checkoutAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  checkoutAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  checkoutAt_lte: DateTime
+
+  # All values greater than the given value.
+  checkoutAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  checkoutAt_gte: DateTime
+  description: String
+
+  # All values that are not equal to given value.
+  description_not: String
+
+  # All values that are contained in given list.
+  description_in: [String!]
+
+  # All values that are not contained in given list.
+  description_not_in: [String!]
+
+  # All values less than the given value.
+  description_lt: String
+
+  # All values less than or equal the given value.
+  description_lte: String
+
+  # All values greater than the given value.
+  description_gt: String
+
+  # All values greater than or equal the given value.
+  description_gte: String
+
+  # All values containing the given string.
+  description_contains: String
+
+  # All values not containing the given string.
+  description_not_contains: String
+
+  # All values starting with the given string.
+  description_starts_with: String
+
+  # All values not starting with the given string.
+  description_not_starts_with: String
+
+  # All values ending with the given string.
+  description_ends_with: String
+
+  # All values not ending with the given string.
+  description_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  rejectionDescription: String
+
+  # All values that are not equal to given value.
+  rejectionDescription_not: String
+
+  # All values that are contained in given list.
+  rejectionDescription_in: [String!]
+
+  # All values that are not contained in given list.
+  rejectionDescription_not_in: [String!]
+
+  # All values less than the given value.
+  rejectionDescription_lt: String
+
+  # All values less than or equal the given value.
+  rejectionDescription_lte: String
+
+  # All values greater than the given value.
+  rejectionDescription_gt: String
+
+  # All values greater than or equal the given value.
+  rejectionDescription_gte: String
+
+  # All values containing the given string.
+  rejectionDescription_contains: String
+
+  # All values not containing the given string.
+  rejectionDescription_not_contains: String
+
+  # All values starting with the given string.
+  rejectionDescription_starts_with: String
+
+  # All values not starting with the given string.
+  rejectionDescription_not_starts_with: String
+
+  # All values ending with the given string.
+  rejectionDescription_ends_with: String
+
+  # All values not ending with the given string.
+  rejectionDescription_not_ends_with: String
+  place: PlaceFilter
+  placeReview: PlaceReviewFilter
+  user: UserFilter
+  userReview: UserReviewFilter
+}
+
+enum CheckinOrderBy {
+  approvalTime_ASC
+  approvalTime_DESC
+  approved_ASC
+  approved_DESC
+  canceled_ASC
+  canceled_DESC
+  checkinAt_ASC
+  checkinAt_DESC
+  checkoutAt_ASC
+  checkoutAt_DESC
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  rejectionDescription_ASC
+  rejectionDescription_DESC
+}
+
+input CheckinplacePlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input CheckinplaceReviewPlaceReview {
+  description: String
+  rate: Int!
+  placeId: ID
+  place: PlaceReviewplacePlace
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+}
+
+input CheckinuserReviewUserReview {
+  description: String
+  rate: Int!
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+  userId: ID
+  user: UserReviewuserUser
+}
+
+input CheckinuserUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+input CreateCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+}
+
+input CreateCheckinInput {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+  clientMutationId: String!
+}
+
+type CreateCheckinPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  checkin: Checkin
+  edge: CheckinEdge
+  place: Place
+  placeReview: PlaceReview
+  user: User
+  userReview: UserReview
+}
+
+input CreateFile {
+  contentType: String!
+  name: String!
+  secret: String!
+  size: Int!
+  url: String!
+}
+
+input CreateFileInput {
+  contentType: String!
+  name: String!
+  secret: String!
+  size: Int!
+  url: String!
+  clientMutationId: String!
+}
+
+type CreateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input CreatePlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input CreatePlaceInput {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+  clientMutationId: String!
+}
+
+type CreatePlacePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  place: Place
+  edge: PlaceEdge
+  postedBy: User
+  type: PlaceType
+}
+
+input CreatePlaceReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  placeId: ID
+  place: PlaceReviewplacePlace
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+}
+
+input CreatePlaceReviewInput {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  placeId: ID
+  place: PlaceReviewplacePlace
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+  clientMutationId: String!
+}
+
+type CreatePlaceReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeReview: PlaceReview
+  edge: PlaceReviewEdge
+  checkin: Checkin
+  place: Place
+  postedBy: User
+}
+
+input CreatePlaceSchedule {
+  day: Int!
+  endTime: String!
+  startTime: String!
+  placeId: ID
+  place: PlaceScheduleplacePlace
+}
+
+input CreatePlaceScheduleInput {
+  day: Int!
+  endTime: String!
+  startTime: String!
+  placeId: ID
+  place: PlaceScheduleplacePlace
+  clientMutationId: String!
+}
+
+type CreatePlaceSchedulePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeSchedule: PlaceSchedule
+  edge: PlaceScheduleEdge
+  place: Place
+}
+
+input CreatePlaceType {
+  name: String!
+  placesIds: [ID!]
+  places: [PlaceTypeplacesPlace!]
+}
+
+input CreatePlaceTypeInput {
+  name: String!
+  placesIds: [ID!]
+  places: [PlaceTypeplacesPlace!]
+  clientMutationId: String!
+}
+
+type CreatePlaceTypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeType: PlaceType
+  edge: PlaceTypeEdge
+}
+
+input CreateTechnology {
+  name: String!
+  usersIds: [ID!]
+  users: [TechnologyusersUserTechnology!]
+}
+
+input CreateTechnologyInput {
+  name: String!
+  usersIds: [ID!]
+  users: [TechnologyusersUserTechnology!]
+  clientMutationId: String!
+}
+
+type CreateTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  technology: Technology
+  edge: TechnologyEdge
+}
+
+input CreateUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+# If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+input CreateUserReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+  userId: ID
+  user: UserReviewuserUser
+}
+
+input CreateUserReviewInput {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+  userId: ID
+  user: UserReviewuserUser
+  clientMutationId: String!
+}
+
+type CreateUserReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userReview: UserReview
+  edge: UserReviewEdge
+  checkin: Checkin
+  postedBy: User
+  user: User
+}
+
+input CreateUserTechnology {
+  technologyId: ID
+  technology: UserTechnologytechnologyTechnology
+  userId: ID
+  user: UserTechnologyuserUser
+}
+
+input CreateUserTechnologyInput {
+  technologyId: ID
+  technology: UserTechnologytechnologyTechnology
+  userId: ID
+  user: UserTechnologyuserUser
+  clientMutationId: String!
+}
+
+type CreateUserTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userTechnology: UserTechnology
+  edge: UserTechnologyEdge
+  technology: Technology
+  user: User
+}
+
+scalar DateTime
+
+input DeleteCheckinInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteCheckinPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  checkin: Checkin
+  edge: CheckinEdge
+  place: Place
+  placeReview: PlaceReview
+  user: User
+  userReview: UserReview
+  deletedId: ID
+}
+
+input DeleteFileInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+  deletedId: ID
+}
+
+input DeletePlaceInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeletePlacePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  place: Place
+  edge: PlaceEdge
+  postedBy: User
+  type: PlaceType
+  deletedId: ID
+}
+
+input DeletePlaceReviewInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeletePlaceReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeReview: PlaceReview
+  edge: PlaceReviewEdge
+  checkin: Checkin
+  place: Place
+  postedBy: User
+  deletedId: ID
+}
+
+input DeletePlaceScheduleInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeletePlaceSchedulePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeSchedule: PlaceSchedule
+  edge: PlaceScheduleEdge
+  place: Place
+  deletedId: ID
+}
+
+input DeletePlaceTypeInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeletePlaceTypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeType: PlaceType
+  edge: PlaceTypeEdge
+  deletedId: ID
+}
+
+input DeleteTechnologyInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  technology: Technology
+  edge: TechnologyEdge
+  deletedId: ID
+}
+
+input DeleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+  deletedId: ID
+}
+
+input DeleteUserReviewInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userReview: UserReview
+  edge: UserReviewEdge
+  checkin: Checkin
+  postedBy: User
+  user: User
+  deletedId: ID
+}
+
+input DeleteUserTechnologyInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userTechnology: UserTechnology
+  edge: UserTechnologyEdge
+  technology: Technology
+  user: User
+  deletedId: ID
+}
+
+# EmailAuthenticateUserPayload
+type EmailAuthenticateUserPayload {
+  id: ID!
+  token: String!
+}
+
+# FacebookAuthenticateUserPayload
+type FacebookAuthenticateUserPayload {
+  id: ID!
+  token: String!
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+# A connection to a list of items.
+type FileConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [FileEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type FileEdge {
+  # The item at the end of the edge.
+  node: File!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input FileFilter {
+  # Logical AND on all given filters.
+  AND: [FileFilter!]
+
+  # Logical OR on all given filters.
+  OR: [FileFilter!]
+  contentType: String
+
+  # All values that are not equal to given value.
+  contentType_not: String
+
+  # All values that are contained in given list.
+  contentType_in: [String!]
+
+  # All values that are not contained in given list.
+  contentType_not_in: [String!]
+
+  # All values less than the given value.
+  contentType_lt: String
+
+  # All values less than or equal the given value.
+  contentType_lte: String
+
+  # All values greater than the given value.
+  contentType_gt: String
+
+  # All values greater than or equal the given value.
+  contentType_gte: String
+
+  # All values containing the given string.
+  contentType_contains: String
+
+  # All values not containing the given string.
+  contentType_not_contains: String
+
+  # All values starting with the given string.
+  contentType_starts_with: String
+
+  # All values not starting with the given string.
+  contentType_not_starts_with: String
+
+  # All values ending with the given string.
+  contentType_ends_with: String
+
+  # All values not ending with the given string.
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  secret: String
+
+  # All values that are not equal to given value.
+  secret_not: String
+
+  # All values that are contained in given list.
+  secret_in: [String!]
+
+  # All values that are not contained in given list.
+  secret_not_in: [String!]
+
+  # All values less than the given value.
+  secret_lt: String
+
+  # All values less than or equal the given value.
+  secret_lte: String
+
+  # All values greater than the given value.
+  secret_gt: String
+
+  # All values greater than or equal the given value.
+  secret_gte: String
+
+  # All values containing the given string.
+  secret_contains: String
+
+  # All values not containing the given string.
+  secret_not_contains: String
+
+  # All values starting with the given string.
+  secret_starts_with: String
+
+  # All values not starting with the given string.
+  secret_not_starts_with: String
+
+  # All values ending with the given string.
+  secret_ends_with: String
+
+  # All values not ending with the given string.
+  secret_not_ends_with: String
+  size: Int
+
+  # All values that are not equal to given value.
+  size_not: Int
+
+  # All values that are contained in given list.
+  size_in: [Int!]
+
+  # All values that are not contained in given list.
+  size_not_in: [Int!]
+
+  # All values less than the given value.
+  size_lt: Int
+
+  # All values less than or equal the given value.
+  size_lte: Int
+
+  # All values greater than the given value.
+  size_gt: Int
+
+  # All values greater than or equal the given value.
+  size_gte: Int
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+}
+
+enum FileOrderBy {
+  contentType_ASC
+  contentType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  secret_ASC
+  secret_DESC
+  size_ASC
+  size_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+# HelloPayload
+type HelloPayload {
+  message: String!
+}
+
+# LoggedInUserPayload
+type LoggedInUserPayload {
+  id: ID!
+}
+
+type Mutation {
+  createCheckin(input: CreateCheckinInput!): CreateCheckinPayload
+  createFile(input: CreateFileInput!): CreateFilePayload
+  createPlace(input: CreatePlaceInput!): CreatePlacePayload
+  createPlaceReview(input: CreatePlaceReviewInput!): CreatePlaceReviewPayload
+  createPlaceSchedule(input: CreatePlaceScheduleInput!): CreatePlaceSchedulePayload
+  createPlaceType(input: CreatePlaceTypeInput!): CreatePlaceTypePayload
+  createTechnology(input: CreateTechnologyInput!): CreateTechnologyPayload
+  createUserReview(input: CreateUserReviewInput!): CreateUserReviewPayload
+  createUserTechnology(input: CreateUserTechnologyInput!): CreateUserTechnologyPayload
+  updateCheckin(input: UpdateCheckinInput!): UpdateCheckinPayload
+  updateFile(input: UpdateFileInput!): UpdateFilePayload
+  updatePlace(input: UpdatePlaceInput!): UpdatePlacePayload
+  updatePlaceReview(input: UpdatePlaceReviewInput!): UpdatePlaceReviewPayload
+  updatePlaceSchedule(input: UpdatePlaceScheduleInput!): UpdatePlaceSchedulePayload
+  updatePlaceType(input: UpdatePlaceTypeInput!): UpdatePlaceTypePayload
+  updateTechnology(input: UpdateTechnologyInput!): UpdateTechnologyPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  updateUserReview(input: UpdateUserReviewInput!): UpdateUserReviewPayload
+  updateUserTechnology(input: UpdateUserTechnologyInput!): UpdateUserTechnologyPayload
+  updateOrCreateCheckin(input: UpdateOrCreateCheckinInput!): UpdateOrCreateCheckinPayload
+  updateOrCreateFile(input: UpdateOrCreateFileInput!): UpdateOrCreateFilePayload
+  updateOrCreatePlace(input: UpdateOrCreatePlaceInput!): UpdateOrCreatePlacePayload
+  updateOrCreatePlaceReview(input: UpdateOrCreatePlaceReviewInput!): UpdateOrCreatePlaceReviewPayload
+  updateOrCreatePlaceSchedule(input: UpdateOrCreatePlaceScheduleInput!): UpdateOrCreatePlaceSchedulePayload
+  updateOrCreatePlaceType(input: UpdateOrCreatePlaceTypeInput!): UpdateOrCreatePlaceTypePayload
+  updateOrCreateTechnology(input: UpdateOrCreateTechnologyInput!): UpdateOrCreateTechnologyPayload
+  updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
+  updateOrCreateUserReview(input: UpdateOrCreateUserReviewInput!): UpdateOrCreateUserReviewPayload
+  updateOrCreateUserTechnology(input: UpdateOrCreateUserTechnologyInput!): UpdateOrCreateUserTechnologyPayload
+  deleteCheckin(input: DeleteCheckinInput!): DeleteCheckinPayload
+  deleteFile(input: DeleteFileInput!): DeleteFilePayload
+  deletePlace(input: DeletePlaceInput!): DeletePlacePayload
+  deletePlaceReview(input: DeletePlaceReviewInput!): DeletePlaceReviewPayload
+  deletePlaceSchedule(input: DeletePlaceScheduleInput!): DeletePlaceSchedulePayload
+  deletePlaceType(input: DeletePlaceTypeInput!): DeletePlaceTypePayload
+  deleteTechnology(input: DeleteTechnologyInput!): DeleteTechnologyPayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  deleteUserReview(input: DeleteUserReviewInput!): DeleteUserReviewPayload
+  deleteUserTechnology(input: DeleteUserTechnologyInput!): DeleteUserTechnologyPayload
+  setPlaceCheckinReview(input: AddToPlaceCheckinReviewPlaceReviewInput!): SetPlaceCheckinReviewPayload
+  setUserCheckinReview(input: AddToUserCheckinReviewUserReviewInput!): SetUserCheckinReviewPayload
+  addToPlacesCheckins(input: AddToPlacesCheckinsPlaceInput!): AddToPlacesCheckinsPayload
+  addToPlacesReviews(input: AddToPlacesReviewsPlaceInput!): AddToPlacesReviewsPayload
+  addToPlacesSchedules(input: AddToPlacesSchedulesPlaceInput!): AddToPlacesSchedulesPayload
+  addToPlacesTypes(input: AddToPlacesTypesPlaceTypeInput!): AddToPlacesTypesPayload
+  addToUserPostedPlaces(input: AddToUserPostedPlacesUserInput!): AddToUserPostedPlacesPayload
+  addToUsersCheckins(input: AddToUsersCheckinsUserInput!): AddToUsersCheckinsPayload
+  addToUsersOnTechnology(input: AddToUsersOnTechnologyTechnologyInput!): AddToUsersOnTechnologyPayload
+  addToUsersPostedPlacesReviews(input: AddToUsersPostedPlacesReviewsUserInput!): AddToUsersPostedPlacesReviewsPayload
+  addToUsersPostedReviews(input: AddToUsersPostedReviewsUserInput!): AddToUsersPostedReviewsPayload
+  addToUsersReviews(input: AddToUsersReviewsUserInput!): AddToUsersReviewsPayload
+  addToUsersTechnologies(input: AddToUsersTechnologiesUserInput!): AddToUsersTechnologiesPayload
+  createUser(input: SignupUserInput!): CreateUserPayload!
+
+  # authenticate
+  emailAuthenticateUser(email: String!, password: String!): EmailAuthenticateUserPayload
+
+  # facebookAuthentication
+  facebookAuthenticateUser(facebookToken: String!): FacebookAuthenticateUserPayload!
+
+  # signup
+  signupUser(email: String!, password: String!, name: String!): SignupUserPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+type Place implements Node {
+  address: String!
+  address2: String
+  checkins(filter: CheckinFilter, orderBy: CheckinOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): CheckinConnection
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  id: ID!
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  postedBy(filter: UserFilter): User!
+  reviews(filter: PlaceReviewFilter, orderBy: PlaceReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceReviewConnection
+  rooms: Int!
+  schedules(filter: PlaceScheduleFilter, orderBy: PlaceScheduleOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceScheduleConnection
+  state: String!
+  type(filter: PlaceTypeFilter): PlaceType!
+  url: String
+  zip: String!
+}
+
+input PlacecheckinsCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+}
+
+# A connection to a list of items.
+type PlaceConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [PlaceEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type PlaceEdge {
+  # The item at the end of the edge.
+  node: Place!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input PlaceFilter {
+  # Logical AND on all given filters.
+  AND: [PlaceFilter!]
+
+  # Logical OR on all given filters.
+  OR: [PlaceFilter!]
+  address: String
+
+  # All values that are not equal to given value.
+  address_not: String
+
+  # All values that are contained in given list.
+  address_in: [String!]
+
+  # All values that are not contained in given list.
+  address_not_in: [String!]
+
+  # All values less than the given value.
+  address_lt: String
+
+  # All values less than or equal the given value.
+  address_lte: String
+
+  # All values greater than the given value.
+  address_gt: String
+
+  # All values greater than or equal the given value.
+  address_gte: String
+
+  # All values containing the given string.
+  address_contains: String
+
+  # All values not containing the given string.
+  address_not_contains: String
+
+  # All values starting with the given string.
+  address_starts_with: String
+
+  # All values not starting with the given string.
+  address_not_starts_with: String
+
+  # All values ending with the given string.
+  address_ends_with: String
+
+  # All values not ending with the given string.
+  address_not_ends_with: String
+  address2: String
+
+  # All values that are not equal to given value.
+  address2_not: String
+
+  # All values that are contained in given list.
+  address2_in: [String!]
+
+  # All values that are not contained in given list.
+  address2_not_in: [String!]
+
+  # All values less than the given value.
+  address2_lt: String
+
+  # All values less than or equal the given value.
+  address2_lte: String
+
+  # All values greater than the given value.
+  address2_gt: String
+
+  # All values greater than or equal the given value.
+  address2_gte: String
+
+  # All values containing the given string.
+  address2_contains: String
+
+  # All values not containing the given string.
+  address2_not_contains: String
+
+  # All values starting with the given string.
+  address2_starts_with: String
+
+  # All values not starting with the given string.
+  address2_not_starts_with: String
+
+  # All values ending with the given string.
+  address2_ends_with: String
+
+  # All values not ending with the given string.
+  address2_not_ends_with: String
+  city: String
+
+  # All values that are not equal to given value.
+  city_not: String
+
+  # All values that are contained in given list.
+  city_in: [String!]
+
+  # All values that are not contained in given list.
+  city_not_in: [String!]
+
+  # All values less than the given value.
+  city_lt: String
+
+  # All values less than or equal the given value.
+  city_lte: String
+
+  # All values greater than the given value.
+  city_gt: String
+
+  # All values greater than or equal the given value.
+  city_gte: String
+
+  # All values containing the given string.
+  city_contains: String
+
+  # All values not containing the given string.
+  city_not_contains: String
+
+  # All values starting with the given string.
+  city_starts_with: String
+
+  # All values not starting with the given string.
+  city_not_starts_with: String
+
+  # All values ending with the given string.
+  city_ends_with: String
+
+  # All values not ending with the given string.
+  city_not_ends_with: String
+  country: String
+
+  # All values that are not equal to given value.
+  country_not: String
+
+  # All values that are contained in given list.
+  country_in: [String!]
+
+  # All values that are not contained in given list.
+  country_not_in: [String!]
+
+  # All values less than the given value.
+  country_lt: String
+
+  # All values less than or equal the given value.
+  country_lte: String
+
+  # All values greater than the given value.
+  country_gt: String
+
+  # All values greater than or equal the given value.
+  country_gte: String
+
+  # All values containing the given string.
+  country_contains: String
+
+  # All values not containing the given string.
+  country_not_contains: String
+
+  # All values starting with the given string.
+  country_starts_with: String
+
+  # All values not starting with the given string.
+  country_not_starts_with: String
+
+  # All values ending with the given string.
+  country_ends_with: String
+
+  # All values not ending with the given string.
+  country_not_ends_with: String
+  description: String
+
+  # All values that are not equal to given value.
+  description_not: String
+
+  # All values that are contained in given list.
+  description_in: [String!]
+
+  # All values that are not contained in given list.
+  description_not_in: [String!]
+
+  # All values less than the given value.
+  description_lt: String
+
+  # All values less than or equal the given value.
+  description_lte: String
+
+  # All values greater than the given value.
+  description_gt: String
+
+  # All values greater than or equal the given value.
+  description_gte: String
+
+  # All values containing the given string.
+  description_contains: String
+
+  # All values not containing the given string.
+  description_not_contains: String
+
+  # All values starting with the given string.
+  description_starts_with: String
+
+  # All values not starting with the given string.
+  description_not_starts_with: String
+
+  # All values ending with the given string.
+  description_ends_with: String
+
+  # All values not ending with the given string.
+  description_not_ends_with: String
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  latitude: Float
+
+  # All values that are not equal to given value.
+  latitude_not: Float
+
+  # All values that are contained in given list.
+  latitude_in: [Float!]
+
+  # All values that are not contained in given list.
+  latitude_not_in: [Float!]
+
+  # All values less than the given value.
+  latitude_lt: Float
+
+  # All values less than or equal the given value.
+  latitude_lte: Float
+
+  # All values greater than the given value.
+  latitude_gt: Float
+
+  # All values greater than or equal the given value.
+  latitude_gte: Float
+  longitude: Float
+
+  # All values that are not equal to given value.
+  longitude_not: Float
+
+  # All values that are contained in given list.
+  longitude_in: [Float!]
+
+  # All values that are not contained in given list.
+  longitude_not_in: [Float!]
+
+  # All values less than the given value.
+  longitude_lt: Float
+
+  # All values less than or equal the given value.
+  longitude_lte: Float
+
+  # All values greater than the given value.
+  longitude_gt: Float
+
+  # All values greater than or equal the given value.
+  longitude_gte: Float
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  needApproval: Boolean
+
+  # All values that are not equal to given value.
+  needApproval_not: Boolean
+  phone: String
+
+  # All values that are not equal to given value.
+  phone_not: String
+
+  # All values that are contained in given list.
+  phone_in: [String!]
+
+  # All values that are not contained in given list.
+  phone_not_in: [String!]
+
+  # All values less than the given value.
+  phone_lt: String
+
+  # All values less than or equal the given value.
+  phone_lte: String
+
+  # All values greater than the given value.
+  phone_gt: String
+
+  # All values greater than or equal the given value.
+  phone_gte: String
+
+  # All values containing the given string.
+  phone_contains: String
+
+  # All values not containing the given string.
+  phone_not_contains: String
+
+  # All values starting with the given string.
+  phone_starts_with: String
+
+  # All values not starting with the given string.
+  phone_not_starts_with: String
+
+  # All values ending with the given string.
+  phone_ends_with: String
+
+  # All values not ending with the given string.
+  phone_not_ends_with: String
+  rooms: Int
+
+  # All values that are not equal to given value.
+  rooms_not: Int
+
+  # All values that are contained in given list.
+  rooms_in: [Int!]
+
+  # All values that are not contained in given list.
+  rooms_not_in: [Int!]
+
+  # All values less than the given value.
+  rooms_lt: Int
+
+  # All values less than or equal the given value.
+  rooms_lte: Int
+
+  # All values greater than the given value.
+  rooms_gt: Int
+
+  # All values greater than or equal the given value.
+  rooms_gte: Int
+  state: String
+
+  # All values that are not equal to given value.
+  state_not: String
+
+  # All values that are contained in given list.
+  state_in: [String!]
+
+  # All values that are not contained in given list.
+  state_not_in: [String!]
+
+  # All values less than the given value.
+  state_lt: String
+
+  # All values less than or equal the given value.
+  state_lte: String
+
+  # All values greater than the given value.
+  state_gt: String
+
+  # All values greater than or equal the given value.
+  state_gte: String
+
+  # All values containing the given string.
+  state_contains: String
+
+  # All values not containing the given string.
+  state_not_contains: String
+
+  # All values starting with the given string.
+  state_starts_with: String
+
+  # All values not starting with the given string.
+  state_not_starts_with: String
+
+  # All values ending with the given string.
+  state_ends_with: String
+
+  # All values not ending with the given string.
+  state_not_ends_with: String
+  url: String
+
+  # All values that are not equal to given value.
+  url_not: String
+
+  # All values that are contained in given list.
+  url_in: [String!]
+
+  # All values that are not contained in given list.
+  url_not_in: [String!]
+
+  # All values less than the given value.
+  url_lt: String
+
+  # All values less than or equal the given value.
+  url_lte: String
+
+  # All values greater than the given value.
+  url_gt: String
+
+  # All values greater than or equal the given value.
+  url_gte: String
+
+  # All values containing the given string.
+  url_contains: String
+
+  # All values not containing the given string.
+  url_not_contains: String
+
+  # All values starting with the given string.
+  url_starts_with: String
+
+  # All values not starting with the given string.
+  url_not_starts_with: String
+
+  # All values ending with the given string.
+  url_ends_with: String
+
+  # All values not ending with the given string.
+  url_not_ends_with: String
+  zip: String
+
+  # All values that are not equal to given value.
+  zip_not: String
+
+  # All values that are contained in given list.
+  zip_in: [String!]
+
+  # All values that are not contained in given list.
+  zip_not_in: [String!]
+
+  # All values less than the given value.
+  zip_lt: String
+
+  # All values less than or equal the given value.
+  zip_lte: String
+
+  # All values greater than the given value.
+  zip_gt: String
+
+  # All values greater than or equal the given value.
+  zip_gte: String
+
+  # All values containing the given string.
+  zip_contains: String
+
+  # All values not containing the given string.
+  zip_not_contains: String
+
+  # All values starting with the given string.
+  zip_starts_with: String
+
+  # All values not starting with the given string.
+  zip_not_starts_with: String
+
+  # All values ending with the given string.
+  zip_ends_with: String
+
+  # All values not ending with the given string.
+  zip_not_ends_with: String
+  checkins_every: CheckinFilter
+  checkins_some: CheckinFilter
+  checkins_none: CheckinFilter
+  postedBy: UserFilter
+  reviews_every: PlaceReviewFilter
+  reviews_some: PlaceReviewFilter
+  reviews_none: PlaceReviewFilter
+  schedules_every: PlaceScheduleFilter
+  schedules_some: PlaceScheduleFilter
+  schedules_none: PlaceScheduleFilter
+  type: PlaceTypeFilter
+}
+
+enum PlaceOrderBy {
+  address_ASC
+  address_DESC
+  address2_ASC
+  address2_DESC
+  city_ASC
+  city_DESC
+  country_ASC
+  country_DESC
+  description_ASC
+  description_DESC
+  email_ASC
+  email_DESC
+  id_ASC
+  id_DESC
+  latitude_ASC
+  latitude_DESC
+  longitude_ASC
+  longitude_DESC
+  name_ASC
+  name_DESC
+  needApproval_ASC
+  needApproval_DESC
+  phone_ASC
+  phone_DESC
+  rooms_ASC
+  rooms_DESC
+  state_ASC
+  state_DESC
+  url_ASC
+  url_DESC
+  zip_ASC
+  zip_DESC
+}
+
+input PlacepostedByUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+type PlaceReview implements Node {
+  checkin(filter: CheckinFilter): Checkin!
+  description: String
+  id: ID!
+  place(filter: PlaceFilter): Place!
+  postedBy(filter: UserFilter): User!
+  rate: Int!
+}
+
+input PlaceReviewcheckinCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+}
+
+# A connection to a list of items.
+type PlaceReviewConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [PlaceReviewEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type PlaceReviewEdge {
+  # The item at the end of the edge.
+  node: PlaceReview!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input PlaceReviewFilter {
+  # Logical AND on all given filters.
+  AND: [PlaceReviewFilter!]
+
+  # Logical OR on all given filters.
+  OR: [PlaceReviewFilter!]
+  description: String
+
+  # All values that are not equal to given value.
+  description_not: String
+
+  # All values that are contained in given list.
+  description_in: [String!]
+
+  # All values that are not contained in given list.
+  description_not_in: [String!]
+
+  # All values less than the given value.
+  description_lt: String
+
+  # All values less than or equal the given value.
+  description_lte: String
+
+  # All values greater than the given value.
+  description_gt: String
+
+  # All values greater than or equal the given value.
+  description_gte: String
+
+  # All values containing the given string.
+  description_contains: String
+
+  # All values not containing the given string.
+  description_not_contains: String
+
+  # All values starting with the given string.
+  description_starts_with: String
+
+  # All values not starting with the given string.
+  description_not_starts_with: String
+
+  # All values ending with the given string.
+  description_ends_with: String
+
+  # All values not ending with the given string.
+  description_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  rate: Int
+
+  # All values that are not equal to given value.
+  rate_not: Int
+
+  # All values that are contained in given list.
+  rate_in: [Int!]
+
+  # All values that are not contained in given list.
+  rate_not_in: [Int!]
+
+  # All values less than the given value.
+  rate_lt: Int
+
+  # All values less than or equal the given value.
+  rate_lte: Int
+
+  # All values greater than the given value.
+  rate_gt: Int
+
+  # All values greater than or equal the given value.
+  rate_gte: Int
+  checkin: CheckinFilter
+  place: PlaceFilter
+  postedBy: UserFilter
+}
+
+enum PlaceReviewOrderBy {
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  rate_ASC
+  rate_DESC
+}
+
+input PlaceReviewplacePlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input PlaceReviewpostedByUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+input PlacereviewsPlaceReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+}
+
+type PlaceSchedule implements Node {
+  day: Int!
+  endTime: String!
+  id: ID!
+  place(filter: PlaceFilter): Place!
+  startTime: String!
+}
+
+# A connection to a list of items.
+type PlaceScheduleConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [PlaceScheduleEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type PlaceScheduleEdge {
+  # The item at the end of the edge.
+  node: PlaceSchedule!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input PlaceScheduleFilter {
+  # Logical AND on all given filters.
+  AND: [PlaceScheduleFilter!]
+
+  # Logical OR on all given filters.
+  OR: [PlaceScheduleFilter!]
+  day: Int
+
+  # All values that are not equal to given value.
+  day_not: Int
+
+  # All values that are contained in given list.
+  day_in: [Int!]
+
+  # All values that are not contained in given list.
+  day_not_in: [Int!]
+
+  # All values less than the given value.
+  day_lt: Int
+
+  # All values less than or equal the given value.
+  day_lte: Int
+
+  # All values greater than the given value.
+  day_gt: Int
+
+  # All values greater than or equal the given value.
+  day_gte: Int
+  endTime: String
+
+  # All values that are not equal to given value.
+  endTime_not: String
+
+  # All values that are contained in given list.
+  endTime_in: [String!]
+
+  # All values that are not contained in given list.
+  endTime_not_in: [String!]
+
+  # All values less than the given value.
+  endTime_lt: String
+
+  # All values less than or equal the given value.
+  endTime_lte: String
+
+  # All values greater than the given value.
+  endTime_gt: String
+
+  # All values greater than or equal the given value.
+  endTime_gte: String
+
+  # All values containing the given string.
+  endTime_contains: String
+
+  # All values not containing the given string.
+  endTime_not_contains: String
+
+  # All values starting with the given string.
+  endTime_starts_with: String
+
+  # All values not starting with the given string.
+  endTime_not_starts_with: String
+
+  # All values ending with the given string.
+  endTime_ends_with: String
+
+  # All values not ending with the given string.
+  endTime_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  startTime: String
+
+  # All values that are not equal to given value.
+  startTime_not: String
+
+  # All values that are contained in given list.
+  startTime_in: [String!]
+
+  # All values that are not contained in given list.
+  startTime_not_in: [String!]
+
+  # All values less than the given value.
+  startTime_lt: String
+
+  # All values less than or equal the given value.
+  startTime_lte: String
+
+  # All values greater than the given value.
+  startTime_gt: String
+
+  # All values greater than or equal the given value.
+  startTime_gte: String
+
+  # All values containing the given string.
+  startTime_contains: String
+
+  # All values not containing the given string.
+  startTime_not_contains: String
+
+  # All values starting with the given string.
+  startTime_starts_with: String
+
+  # All values not starting with the given string.
+  startTime_not_starts_with: String
+
+  # All values ending with the given string.
+  startTime_ends_with: String
+
+  # All values not ending with the given string.
+  startTime_not_ends_with: String
+  place: PlaceFilter
+}
+
+enum PlaceScheduleOrderBy {
+  day_ASC
+  day_DESC
+  endTime_ASC
+  endTime_DESC
+  id_ASC
+  id_DESC
+  startTime_ASC
+  startTime_DESC
+}
+
+input PlaceScheduleplacePlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input PlaceschedulesPlaceSchedule {
+  day: Int!
+  endTime: String!
+  startTime: String!
+}
+
+type PlaceType implements Node {
+  id: ID!
+  name: String!
+  places(filter: PlaceFilter, orderBy: PlaceOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceConnection
+}
+
+# A connection to a list of items.
+type PlaceTypeConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [PlaceTypeEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type PlaceTypeEdge {
+  # The item at the end of the edge.
+  node: PlaceType!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input PlaceTypeFilter {
+  # Logical AND on all given filters.
+  AND: [PlaceTypeFilter!]
+
+  # Logical OR on all given filters.
+  OR: [PlaceTypeFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  places_every: PlaceFilter
+  places_some: PlaceFilter
+  places_none: PlaceFilter
+}
+
+enum PlaceTypeOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+input PlaceTypeplacesPlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  postedById: ID
+  postedBy: PlacepostedByUser
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input PlacetypePlaceType {
+  name: String!
+  placesIds: [ID!]
+  places: [PlaceTypeplacesPlace!]
+}
+
+type Query {
+  viewer: Viewer!
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}
+
+type SetPlaceCheckinReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeReviewPlaceReview: PlaceReview
+  checkinCheckin: Checkin
+  placeReviewPlaceReviewEdge: PlaceReviewEdge
+  checkinCheckinEdge: CheckinEdge
+}
+
+type SetUserCheckinReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userReviewUserReview: UserReview
+  checkinCheckin: Checkin
+  userReviewUserReviewEdge: UserReviewEdge
+  checkinCheckinEdge: CheckinEdge
+}
+
+input SignupUserInput {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+  clientMutationId: String!
+}
+
+# SignupUserPayload
+type SignupUserPayload {
+  id: ID!
+  token: String!
+}
+
+type Technology implements Node {
+  id: ID!
+  name: String!
+  users(filter: UserTechnologyFilter, orderBy: UserTechnologyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserTechnologyConnection
+}
+
+# A connection to a list of items.
+type TechnologyConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [TechnologyEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type TechnologyEdge {
+  # The item at the end of the edge.
+  node: Technology!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input TechnologyFilter {
+  # Logical AND on all given filters.
+  AND: [TechnologyFilter!]
+
+  # Logical OR on all given filters.
+  OR: [TechnologyFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  users_every: UserTechnologyFilter
+  users_some: UserTechnologyFilter
+  users_none: UserTechnologyFilter
+}
+
+enum TechnologyOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+input TechnologyusersUserTechnology {
+  userId: ID
+  user: UserTechnologyuserUser
+}
+
+input UpdateCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime
+  checkoutAt: DateTime
+  description: String
+  id: ID!
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+}
+
+input UpdateCheckinInput {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime
+  checkoutAt: DateTime
+  description: String
+  id: ID!
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+  clientMutationId: String!
+}
+
+type UpdateCheckinPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  checkin: Checkin
+  edge: CheckinEdge
+  place: Place
+  placeReview: PlaceReview
+  user: User
+  userReview: UserReview
+}
+
+input UpdateFile {
+  contentType: String
+  id: ID!
+  name: String
+  secret: String
+  size: Int
+  url: String
+}
+
+input UpdateFileInput {
+  contentType: String
+  id: ID!
+  name: String
+  secret: String
+  size: Int
+  url: String
+  clientMutationId: String!
+}
+
+type UpdateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input UpdateOrCreateCheckinInput {
+  update: UpdateCheckin!
+  create: CreateCheckin!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateCheckinPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  checkin: Checkin
+  edge: CheckinEdge
+  place: Place
+  placeReview: PlaceReview
+  user: User
+  userReview: UserReview
+}
+
+input UpdateOrCreateFileInput {
+  update: UpdateFile!
+  create: CreateFile!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input UpdateOrCreatePlaceInput {
+  update: UpdatePlace!
+  create: CreatePlace!
+  clientMutationId: String!
+}
+
+type UpdateOrCreatePlacePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  place: Place
+  edge: PlaceEdge
+  postedBy: User
+  type: PlaceType
+}
+
+input UpdateOrCreatePlaceReviewInput {
+  update: UpdatePlaceReview!
+  create: CreatePlaceReview!
+  clientMutationId: String!
+}
+
+type UpdateOrCreatePlaceReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeReview: PlaceReview
+  edge: PlaceReviewEdge
+  checkin: Checkin
+  place: Place
+  postedBy: User
+}
+
+input UpdateOrCreatePlaceScheduleInput {
+  update: UpdatePlaceSchedule!
+  create: CreatePlaceSchedule!
+  clientMutationId: String!
+}
+
+type UpdateOrCreatePlaceSchedulePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeSchedule: PlaceSchedule
+  edge: PlaceScheduleEdge
+  place: Place
+}
+
+input UpdateOrCreatePlaceTypeInput {
+  update: UpdatePlaceType!
+  create: CreatePlaceType!
+  clientMutationId: String!
+}
+
+type UpdateOrCreatePlaceTypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeType: PlaceType
+  edge: PlaceTypeEdge
+}
+
+input UpdateOrCreateTechnologyInput {
+  update: UpdateTechnology!
+  create: CreateTechnology!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  technology: Technology
+  edge: TechnologyEdge
+}
+
+input UpdateOrCreateUserInput {
+  update: UpdateUser!
+  create: CreateUser!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateOrCreateUserReviewInput {
+  update: UpdateUserReview!
+  create: CreateUserReview!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userReview: UserReview
+  edge: UserReviewEdge
+  checkin: Checkin
+  postedBy: User
+  user: User
+}
+
+input UpdateOrCreateUserTechnologyInput {
+  update: UpdateUserTechnology!
+  create: CreateUserTechnology!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userTechnology: UserTechnology
+  edge: UserTechnologyEdge
+  technology: Technology
+  user: User
+}
+
+input UpdatePlace {
+  address: String
+  address2: String
+  city: String
+  country: String
+  description: String
+  email: String
+  id: ID!
+  images: [String!]
+  latitude: Float
+  longitude: Float
+  name: String
+  needApproval: Boolean
+  phone: String
+  rooms: Int
+  state: String
+  url: String
+  zip: String
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input UpdatePlaceInput {
+  address: String
+  address2: String
+  city: String
+  country: String
+  description: String
+  email: String
+  id: ID!
+  images: [String!]
+  latitude: Float
+  longitude: Float
+  name: String
+  needApproval: Boolean
+  phone: String
+  rooms: Int
+  state: String
+  url: String
+  zip: String
+  postedById: ID
+  postedBy: PlacepostedByUser
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+  clientMutationId: String!
+}
+
+type UpdatePlacePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  place: Place
+  edge: PlaceEdge
+  postedBy: User
+  type: PlaceType
+}
+
+input UpdatePlaceReview {
+  description: String
+  id: ID!
+  rate: Int
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  placeId: ID
+  place: PlaceReviewplacePlace
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+}
+
+input UpdatePlaceReviewInput {
+  description: String
+  id: ID!
+  rate: Int
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  placeId: ID
+  place: PlaceReviewplacePlace
+  postedById: ID
+  postedBy: PlaceReviewpostedByUser
+  clientMutationId: String!
+}
+
+type UpdatePlaceReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeReview: PlaceReview
+  edge: PlaceReviewEdge
+  checkin: Checkin
+  place: Place
+  postedBy: User
+}
+
+input UpdatePlaceSchedule {
+  day: Int
+  endTime: String
+  id: ID!
+  startTime: String
+  placeId: ID
+  place: PlaceScheduleplacePlace
+}
+
+input UpdatePlaceScheduleInput {
+  day: Int
+  endTime: String
+  id: ID!
+  startTime: String
+  placeId: ID
+  place: PlaceScheduleplacePlace
+  clientMutationId: String!
+}
+
+type UpdatePlaceSchedulePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeSchedule: PlaceSchedule
+  edge: PlaceScheduleEdge
+  place: Place
+}
+
+input UpdatePlaceType {
+  id: ID!
+  name: String
+  placesIds: [ID!]
+  places: [PlaceTypeplacesPlace!]
+}
+
+input UpdatePlaceTypeInput {
+  id: ID!
+  name: String
+  placesIds: [ID!]
+  places: [PlaceTypeplacesPlace!]
+  clientMutationId: String!
+}
+
+type UpdatePlaceTypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  placeType: PlaceType
+  edge: PlaceTypeEdge
+}
+
+input UpdateTechnology {
+  id: ID!
+  name: String
+  usersIds: [ID!]
+  users: [TechnologyusersUserTechnology!]
+}
+
+input UpdateTechnologyInput {
+  id: ID!
+  name: String
+  usersIds: [ID!]
+  users: [TechnologyusersUserTechnology!]
+  clientMutationId: String!
+}
+
+type UpdateTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  technology: Technology
+  edge: TechnologyEdge
+}
+
+input UpdateUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  id: ID!
+  name: String
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+input UpdateUserInput {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  id: ID!
+  name: String
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+  clientMutationId: String!
+}
+
+type UpdateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateUserReview {
+  description: String
+  id: ID!
+  rate: Int
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+  userId: ID
+  user: UserReviewuserUser
+}
+
+input UpdateUserReviewInput {
+  description: String
+  id: ID!
+  rate: Int
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+  userId: ID
+  user: UserReviewuserUser
+  clientMutationId: String!
+}
+
+type UpdateUserReviewPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userReview: UserReview
+  edge: UserReviewEdge
+  checkin: Checkin
+  postedBy: User
+  user: User
+}
+
+input UpdateUserTechnology {
+  id: ID!
+  technologyId: ID
+  technology: UserTechnologytechnologyTechnology
+  userId: ID
+  user: UserTechnologyuserUser
+}
+
+input UpdateUserTechnologyInput {
+  id: ID!
+  technologyId: ID
+  technology: UserTechnologytechnologyTechnology
+  userId: ID
+  user: UserTechnologyuserUser
+  clientMutationId: String!
+}
+
+type UpdateUserTechnologyPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  userTechnology: UserTechnology
+  edge: UserTechnologyEdge
+  technology: Technology
+  user: User
+}
+
+type User implements Node {
+  bio: String
+  checkins(filter: CheckinFilter, orderBy: CheckinOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): CheckinConnection
+  createdAt: DateTime!
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  id: ID!
+  name: String!
+  password: String
+  postedPlaces(filter: PlaceFilter, orderBy: PlaceOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceConnection
+  postedPlacesReviews(filter: PlaceReviewFilter, orderBy: PlaceReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceReviewConnection
+  postedReviews(filter: UserReviewFilter, orderBy: UserReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserReviewConnection
+  profilePicUrl: String
+  reviews(filter: UserReviewFilter, orderBy: UserReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserReviewConnection
+  technologies(filter: UserTechnologyFilter, orderBy: UserTechnologyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserTechnologyConnection
+  twitter: String
+  updatedAt: DateTime!
+}
+
+input UsercheckinsCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userReviewId: ID
+  userReview: CheckinuserReviewUserReview
+}
+
+# A connection to a list of items.
+type UserConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type UserEdge {
+  # The item at the end of the edge.
+  node: User!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input UserFilter {
+  # Logical AND on all given filters.
+  AND: [UserFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserFilter!]
+  bio: String
+
+  # All values that are not equal to given value.
+  bio_not: String
+
+  # All values that are contained in given list.
+  bio_in: [String!]
+
+  # All values that are not contained in given list.
+  bio_not_in: [String!]
+
+  # All values less than the given value.
+  bio_lt: String
+
+  # All values less than or equal the given value.
+  bio_lte: String
+
+  # All values greater than the given value.
+  bio_gt: String
+
+  # All values greater than or equal the given value.
+  bio_gte: String
+
+  # All values containing the given string.
+  bio_contains: String
+
+  # All values not containing the given string.
+  bio_not_contains: String
+
+  # All values starting with the given string.
+  bio_starts_with: String
+
+  # All values not starting with the given string.
+  bio_not_starts_with: String
+
+  # All values ending with the given string.
+  bio_ends_with: String
+
+  # All values not ending with the given string.
+  bio_not_ends_with: String
+  createdAt: DateTime
+
+  # All values that are not equal to given value.
+  createdAt_not: DateTime
+
+  # All values that are contained in given list.
+  createdAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  createdAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  createdAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  createdAt_lte: DateTime
+
+  # All values greater than the given value.
+  createdAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  createdAt_gte: DateTime
+  email: String
+
+  # All values that are not equal to given value.
+  email_not: String
+
+  # All values that are contained in given list.
+  email_in: [String!]
+
+  # All values that are not contained in given list.
+  email_not_in: [String!]
+
+  # All values less than the given value.
+  email_lt: String
+
+  # All values less than or equal the given value.
+  email_lte: String
+
+  # All values greater than the given value.
+  email_gt: String
+
+  # All values greater than or equal the given value.
+  email_gte: String
+
+  # All values containing the given string.
+  email_contains: String
+
+  # All values not containing the given string.
+  email_not_contains: String
+
+  # All values starting with the given string.
+  email_starts_with: String
+
+  # All values not starting with the given string.
+  email_not_starts_with: String
+
+  # All values ending with the given string.
+  email_ends_with: String
+
+  # All values not ending with the given string.
+  email_not_ends_with: String
+  facebook: String
+
+  # All values that are not equal to given value.
+  facebook_not: String
+
+  # All values that are contained in given list.
+  facebook_in: [String!]
+
+  # All values that are not contained in given list.
+  facebook_not_in: [String!]
+
+  # All values less than the given value.
+  facebook_lt: String
+
+  # All values less than or equal the given value.
+  facebook_lte: String
+
+  # All values greater than the given value.
+  facebook_gt: String
+
+  # All values greater than or equal the given value.
+  facebook_gte: String
+
+  # All values containing the given string.
+  facebook_contains: String
+
+  # All values not containing the given string.
+  facebook_not_contains: String
+
+  # All values starting with the given string.
+  facebook_starts_with: String
+
+  # All values not starting with the given string.
+  facebook_not_starts_with: String
+
+  # All values ending with the given string.
+  facebook_ends_with: String
+
+  # All values not ending with the given string.
+  facebook_not_ends_with: String
+  facebookUserId: String
+
+  # All values that are not equal to given value.
+  facebookUserId_not: String
+
+  # All values that are contained in given list.
+  facebookUserId_in: [String!]
+
+  # All values that are not contained in given list.
+  facebookUserId_not_in: [String!]
+
+  # All values less than the given value.
+  facebookUserId_lt: String
+
+  # All values less than or equal the given value.
+  facebookUserId_lte: String
+
+  # All values greater than the given value.
+  facebookUserId_gt: String
+
+  # All values greater than or equal the given value.
+  facebookUserId_gte: String
+
+  # All values containing the given string.
+  facebookUserId_contains: String
+
+  # All values not containing the given string.
+  facebookUserId_not_contains: String
+
+  # All values starting with the given string.
+  facebookUserId_starts_with: String
+
+  # All values not starting with the given string.
+  facebookUserId_not_starts_with: String
+
+  # All values ending with the given string.
+  facebookUserId_ends_with: String
+
+  # All values not ending with the given string.
+  facebookUserId_not_ends_with: String
+  github: String
+
+  # All values that are not equal to given value.
+  github_not: String
+
+  # All values that are contained in given list.
+  github_in: [String!]
+
+  # All values that are not contained in given list.
+  github_not_in: [String!]
+
+  # All values less than the given value.
+  github_lt: String
+
+  # All values less than or equal the given value.
+  github_lte: String
+
+  # All values greater than the given value.
+  github_gt: String
+
+  # All values greater than or equal the given value.
+  github_gte: String
+
+  # All values containing the given string.
+  github_contains: String
+
+  # All values not containing the given string.
+  github_not_contains: String
+
+  # All values starting with the given string.
+  github_starts_with: String
+
+  # All values not starting with the given string.
+  github_not_starts_with: String
+
+  # All values ending with the given string.
+  github_ends_with: String
+
+  # All values not ending with the given string.
+  github_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  name: String
+
+  # All values that are not equal to given value.
+  name_not: String
+
+  # All values that are contained in given list.
+  name_in: [String!]
+
+  # All values that are not contained in given list.
+  name_not_in: [String!]
+
+  # All values less than the given value.
+  name_lt: String
+
+  # All values less than or equal the given value.
+  name_lte: String
+
+  # All values greater than the given value.
+  name_gt: String
+
+  # All values greater than or equal the given value.
+  name_gte: String
+
+  # All values containing the given string.
+  name_contains: String
+
+  # All values not containing the given string.
+  name_not_contains: String
+
+  # All values starting with the given string.
+  name_starts_with: String
+
+  # All values not starting with the given string.
+  name_not_starts_with: String
+
+  # All values ending with the given string.
+  name_ends_with: String
+
+  # All values not ending with the given string.
+  name_not_ends_with: String
+  password: String
+
+  # All values that are not equal to given value.
+  password_not: String
+
+  # All values that are contained in given list.
+  password_in: [String!]
+
+  # All values that are not contained in given list.
+  password_not_in: [String!]
+
+  # All values less than the given value.
+  password_lt: String
+
+  # All values less than or equal the given value.
+  password_lte: String
+
+  # All values greater than the given value.
+  password_gt: String
+
+  # All values greater than or equal the given value.
+  password_gte: String
+
+  # All values containing the given string.
+  password_contains: String
+
+  # All values not containing the given string.
+  password_not_contains: String
+
+  # All values starting with the given string.
+  password_starts_with: String
+
+  # All values not starting with the given string.
+  password_not_starts_with: String
+
+  # All values ending with the given string.
+  password_ends_with: String
+
+  # All values not ending with the given string.
+  password_not_ends_with: String
+  profilePicUrl: String
+
+  # All values that are not equal to given value.
+  profilePicUrl_not: String
+
+  # All values that are contained in given list.
+  profilePicUrl_in: [String!]
+
+  # All values that are not contained in given list.
+  profilePicUrl_not_in: [String!]
+
+  # All values less than the given value.
+  profilePicUrl_lt: String
+
+  # All values less than or equal the given value.
+  profilePicUrl_lte: String
+
+  # All values greater than the given value.
+  profilePicUrl_gt: String
+
+  # All values greater than or equal the given value.
+  profilePicUrl_gte: String
+
+  # All values containing the given string.
+  profilePicUrl_contains: String
+
+  # All values not containing the given string.
+  profilePicUrl_not_contains: String
+
+  # All values starting with the given string.
+  profilePicUrl_starts_with: String
+
+  # All values not starting with the given string.
+  profilePicUrl_not_starts_with: String
+
+  # All values ending with the given string.
+  profilePicUrl_ends_with: String
+
+  # All values not ending with the given string.
+  profilePicUrl_not_ends_with: String
+  twitter: String
+
+  # All values that are not equal to given value.
+  twitter_not: String
+
+  # All values that are contained in given list.
+  twitter_in: [String!]
+
+  # All values that are not contained in given list.
+  twitter_not_in: [String!]
+
+  # All values less than the given value.
+  twitter_lt: String
+
+  # All values less than or equal the given value.
+  twitter_lte: String
+
+  # All values greater than the given value.
+  twitter_gt: String
+
+  # All values greater than or equal the given value.
+  twitter_gte: String
+
+  # All values containing the given string.
+  twitter_contains: String
+
+  # All values not containing the given string.
+  twitter_not_contains: String
+
+  # All values starting with the given string.
+  twitter_starts_with: String
+
+  # All values not starting with the given string.
+  twitter_not_starts_with: String
+
+  # All values ending with the given string.
+  twitter_ends_with: String
+
+  # All values not ending with the given string.
+  twitter_not_ends_with: String
+  updatedAt: DateTime
+
+  # All values that are not equal to given value.
+  updatedAt_not: DateTime
+
+  # All values that are contained in given list.
+  updatedAt_in: [DateTime!]
+
+  # All values that are not contained in given list.
+  updatedAt_not_in: [DateTime!]
+
+  # All values less than the given value.
+  updatedAt_lt: DateTime
+
+  # All values less than or equal the given value.
+  updatedAt_lte: DateTime
+
+  # All values greater than the given value.
+  updatedAt_gt: DateTime
+
+  # All values greater than or equal the given value.
+  updatedAt_gte: DateTime
+  checkins_every: CheckinFilter
+  checkins_some: CheckinFilter
+  checkins_none: CheckinFilter
+  postedPlaces_every: PlaceFilter
+  postedPlaces_some: PlaceFilter
+  postedPlaces_none: PlaceFilter
+  postedPlacesReviews_every: PlaceReviewFilter
+  postedPlacesReviews_some: PlaceReviewFilter
+  postedPlacesReviews_none: PlaceReviewFilter
+  postedReviews_every: UserReviewFilter
+  postedReviews_some: UserReviewFilter
+  postedReviews_none: UserReviewFilter
+  reviews_every: UserReviewFilter
+  reviews_some: UserReviewFilter
+  reviews_none: UserReviewFilter
+  technologies_every: UserTechnologyFilter
+  technologies_some: UserTechnologyFilter
+  technologies_none: UserTechnologyFilter
+}
+
+enum UserOrderBy {
+  bio_ASC
+  bio_DESC
+  createdAt_ASC
+  createdAt_DESC
+  email_ASC
+  email_DESC
+  facebook_ASC
+  facebook_DESC
+  facebookUserId_ASC
+  facebookUserId_DESC
+  github_ASC
+  github_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  password_ASC
+  password_DESC
+  profilePicUrl_ASC
+  profilePicUrl_DESC
+  twitter_ASC
+  twitter_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input UserpostedPlacesPlace {
+  address: String!
+  address2: String
+  city: String!
+  country: String!
+  description: String!
+  email: String
+  images: [String!]
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  needApproval: Boolean!
+  phone: String
+  rooms: Int!
+  state: String!
+  url: String
+  zip: String!
+  typeId: ID
+  type: PlacetypePlaceType
+  checkinsIds: [ID!]
+  checkins: [PlacecheckinsCheckin!]
+  reviewsIds: [ID!]
+  reviews: [PlacereviewsPlaceReview!]
+  schedulesIds: [ID!]
+  schedules: [PlaceschedulesPlaceSchedule!]
+}
+
+input UserpostedPlacesReviewsPlaceReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: PlaceReviewcheckinCheckin
+  placeId: ID
+  place: PlaceReviewplacePlace
+}
+
+input UserpostedReviewsUserReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  userId: ID
+  user: UserReviewuserUser
+}
+
+type UserReview implements Node {
+  checkin(filter: CheckinFilter): Checkin!
+  description: String
+  id: ID!
+  postedBy(filter: UserFilter): User!
+  rate: Int!
+  user(filter: UserFilter): User!
+}
+
+input UserReviewcheckinCheckin {
+  approvalTime: DateTime
+  approved: Boolean
+  canceled: Boolean
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  description: String
+  rejectionDescription: String
+  placeId: ID
+  place: CheckinplacePlace
+  placeReviewId: ID
+  placeReview: CheckinplaceReviewPlaceReview
+  userId: ID
+  user: CheckinuserUser
+}
+
+# A connection to a list of items.
+type UserReviewConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserReviewEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type UserReviewEdge {
+  # The item at the end of the edge.
+  node: UserReview!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input UserReviewFilter {
+  # Logical AND on all given filters.
+  AND: [UserReviewFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserReviewFilter!]
+  description: String
+
+  # All values that are not equal to given value.
+  description_not: String
+
+  # All values that are contained in given list.
+  description_in: [String!]
+
+  # All values that are not contained in given list.
+  description_not_in: [String!]
+
+  # All values less than the given value.
+  description_lt: String
+
+  # All values less than or equal the given value.
+  description_lte: String
+
+  # All values greater than the given value.
+  description_gt: String
+
+  # All values greater than or equal the given value.
+  description_gte: String
+
+  # All values containing the given string.
+  description_contains: String
+
+  # All values not containing the given string.
+  description_not_contains: String
+
+  # All values starting with the given string.
+  description_starts_with: String
+
+  # All values not starting with the given string.
+  description_not_starts_with: String
+
+  # All values ending with the given string.
+  description_ends_with: String
+
+  # All values not ending with the given string.
+  description_not_ends_with: String
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  rate: Int
+
+  # All values that are not equal to given value.
+  rate_not: Int
+
+  # All values that are contained in given list.
+  rate_in: [Int!]
+
+  # All values that are not contained in given list.
+  rate_not_in: [Int!]
+
+  # All values less than the given value.
+  rate_lt: Int
+
+  # All values less than or equal the given value.
+  rate_lte: Int
+
+  # All values greater than the given value.
+  rate_gt: Int
+
+  # All values greater than or equal the given value.
+  rate_gte: Int
+  checkin: CheckinFilter
+  postedBy: UserFilter
+  user: UserFilter
+}
+
+enum UserReviewOrderBy {
+  description_ASC
+  description_DESC
+  id_ASC
+  id_DESC
+  rate_ASC
+  rate_DESC
+}
+
+input UserReviewpostedByUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+input UserreviewsUserReview {
+  description: String
+  rate: Int!
+  checkinId: ID
+  checkin: UserReviewcheckinCheckin
+  postedById: ID
+  postedBy: UserReviewpostedByUser
+}
+
+input UserReviewuserUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+input UsertechnologiesUserTechnology {
+  technologyId: ID
+  technology: UserTechnologytechnologyTechnology
+}
+
+type UserTechnology implements Node {
+  id: ID!
+  technology(filter: TechnologyFilter): Technology!
+  user(filter: UserFilter): User!
+}
+
+# A connection to a list of items.
+type UserTechnologyConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [UserTechnologyEdge]
+
+  # Count of filtered result set without considering pagination arguments
+  count: Int!
+}
+
+# An edge in a connection.
+type UserTechnologyEdge {
+  # The item at the end of the edge.
+  node: UserTechnology!
+
+  # A cursor for use in pagination.
+  cursor: String!
+}
+
+input UserTechnologyFilter {
+  # Logical AND on all given filters.
+  AND: [UserTechnologyFilter!]
+
+  # Logical OR on all given filters.
+  OR: [UserTechnologyFilter!]
+  id: ID
+
+  # All values that are not equal to given value.
+  id_not: ID
+
+  # All values that are contained in given list.
+  id_in: [ID!]
+
+  # All values that are not contained in given list.
+  id_not_in: [ID!]
+
+  # All values less than the given value.
+  id_lt: ID
+
+  # All values less than or equal the given value.
+  id_lte: ID
+
+  # All values greater than the given value.
+  id_gt: ID
+
+  # All values greater than or equal the given value.
+  id_gte: ID
+
+  # All values containing the given string.
+  id_contains: ID
+
+  # All values not containing the given string.
+  id_not_contains: ID
+
+  # All values starting with the given string.
+  id_starts_with: ID
+
+  # All values not starting with the given string.
+  id_not_starts_with: ID
+
+  # All values ending with the given string.
+  id_ends_with: ID
+
+  # All values not ending with the given string.
+  id_not_ends_with: ID
+  technology: TechnologyFilter
+  user: UserFilter
+}
+
+enum UserTechnologyOrderBy {
+  id_ASC
+  id_DESC
+}
+
+input UserTechnologytechnologyTechnology {
+  name: String!
+  usersIds: [ID!]
+  users: [TechnologyusersUserTechnology!]
+}
+
+input UserTechnologyuserUser {
+  bio: String
+  email: String
+  facebook: String
+  facebookUserId: String
+  github: String
+  name: String!
+  password: String
+  profilePicUrl: String
+  twitter: String
+  checkinsIds: [ID!]
+  checkins: [UsercheckinsCheckin!]
+  postedPlacesIds: [ID!]
+  postedPlaces: [UserpostedPlacesPlace!]
+  postedPlacesReviewsIds: [ID!]
+  postedPlacesReviews: [UserpostedPlacesReviewsPlaceReview!]
+  postedReviewsIds: [ID!]
+  postedReviews: [UserpostedReviewsUserReview!]
+  reviewsIds: [ID!]
+  reviews: [UserreviewsUserReview!]
+  technologiesIds: [ID!]
+  technologies: [UsertechnologiesUserTechnology!]
+}
+
+# This is the famous Relay viewer object
+type Viewer {
+  allCheckins(filter: CheckinFilter, orderBy: CheckinOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): CheckinConnection!
+  allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  allPlaces(filter: PlaceFilter, orderBy: PlaceOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceConnection!
+  allPlaceReviews(filter: PlaceReviewFilter, orderBy: PlaceReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceReviewConnection!
+  allPlaceSchedules(filter: PlaceScheduleFilter, orderBy: PlaceScheduleOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceScheduleConnection!
+  allPlaceTypes(filter: PlaceTypeFilter, orderBy: PlaceTypeOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): PlaceTypeConnection!
+  allTechnologies(filter: TechnologyFilter, orderBy: TechnologyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): TechnologyConnection!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  allUserReviews(filter: UserReviewFilter, orderBy: UserReviewOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserReviewConnection!
+  allUserTechnologies(filter: UserTechnologyFilter, orderBy: UserTechnologyOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserTechnologyConnection!
+  user: User
+  Checkin(id: ID): Checkin
+  File(id: ID, secret: String, url: String): File
+  Place(id: ID): Place
+  PlaceReview(id: ID): PlaceReview
+  PlaceSchedule(id: ID): PlaceSchedule
+  PlaceType(id: ID): PlaceType
+  Technology(id: ID): Technology
+  User(email: String, facebookUserId: String, id: ID): User
+  UserReview(id: ID): UserReview
+  UserTechnology(id: ID): UserTechnology
+
+  # hello
+  hello(name: String): HelloPayload
+
+  # loggedInUser
+  loggedInUser: LoggedInUserPayload
+  id: ID!
+}
+
+
+enum _ModelMutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type CheckinPreviousValues {
+  createdAt: DateTime!
+  id: ID!
+  description: String
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  hostRate: Int
+  guestRate: Int
+  approved: Boolean
+  approvalTime: DateTime
+}
+
+type CheckinSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Checkin
+  updatedFields: [String!]
+  previousValues: CheckinPreviousValues
+}
+
+type PlacePreviousValues {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  name: String!
+  description: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+type PlaceSubscriptionPayload {
+  mutation: _ModelMutationType!
+  node: Place
+  updatedFields: [String!]
+  previousValues: PlacePreviousValues
+}
+
+type Subscription {
+  Checkin: CheckinSubscriptionPayload
+  Place: PlaceSubscriptionPayload
+}

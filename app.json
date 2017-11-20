@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "where-the-hack",
-    "description": "An empty new project",
+    "name": "WHERE THE HACK",
+    "description": "It's a New and Fun Way to Empower Your Network and Finish Your Projects",
     "slug": "where-the-hack",
     "privacy": "public",
     "sdkVersion": "23.0.0",
@@ -15,7 +15,17 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "bundleIdentifier": "com.wherethehack.app",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.wherethehack.app",
+      "permissions": ["ACCESS_FINE_LOCATION", "CAMERA", "MANAGE_DOCUMENTS"],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDyoz3-cePgvIqgsRwov2qKOU1h9vmk4VE"
+        }
+      }
     }
   }
 }

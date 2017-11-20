@@ -1,0 +1,8 @@
+type EmailAuthenticateUserPayload {
+  id: ID!
+  token: String!
+}
+
+extend type Mutation {
+  emailAuthenticateUser(email: String!, password: String!): EmailAuthenticateUserPayload
+}

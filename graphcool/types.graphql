@@ -1,0 +1,115 @@
+type User @model {
+  id: ID! @isUnique
+  name: String!
+  bio: String
+  facebook: String
+  twitter: String
+  github: String
+  profilePicUrl: String
+  technologies: [UserTechnology!]! @relation(name: "UsersTechnologies")
+  reviews: [UserReview!]! @relation(name: "UsersReviews")
+  postedReviews: [UserReview!]! @relation(name: "UsersPostedReviews")
+  postedPlaces: [Place!]! @relation(name: "UserPostedPlaces")
+  postedPlacesReviews: [PlaceReview!]! @relation(name: "UsersPostedPlacesReviews")
+  checkins: [Checkin!]! @relation(name: "UsersCheckins")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String @isUnique
+  password: String
+  facebookUserId: String @isUnique
+}
+
+type UserReview @model {
+  id: ID! @isUnique
+  postedBy: User! @relation(name: "UsersPostedReviews")
+  user: User! @relation(name: "UsersReviews")
+  description: String
+  rate: Int!
+  checkin: Checkin! @relation(name: "UserCheckinReview")
+}
+
+type Technology @model {
+  id: ID! @isUnique
+  name: String!
+  users: [UserTechnology!]! @relation(name: "UsersOnTechnology")
+}
+
+type UserTechnology @model {
+  id: ID! @isUnique
+  user: User! @relation(name: "UsersTechnologies")
+  technology: Technology! @relation(name: "UsersOnTechnology")
+}
+
+type PlaceType @model {
+  id: ID! @isUnique
+  name: String!
+  places: [Place!]! @relation(name: "PlacesTypes")
+}
+
+type Place @model {
+  id: ID! @isUnique
+  name: String!
+  description: String!
+  latitude: Float!
+  longitude: Float!
+  address: String!
+  address2: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+  needApproval: Boolean!
+  rooms: Int!
+  type: PlaceType! @relation(name: "PlacesTypes")
+  schedules: [PlaceSchedule!]! @relation(name: "PlacesSchedules")
+  postedBy: User! @relation(name: "UserPostedPlaces")
+  checkins: [Checkin!]! @relation(name: "PlacesCheckins")
+  reviews: [PlaceReview!]! @relation(name: "PlacesReviews")
+  phone: String
+  email: String
+  url: String
+  images: [String!]
+}
+
+type PlaceSchedule @model {
+  id: ID! @isUnique
+  day: Int!
+  startTime: String!
+  endTime: String!
+  place: Place! @relation(name: "PlacesSchedules")
+}
+
+type PlaceReview @model {
+  id: ID! @isUnique
+  postedBy: User! @relation(name: "UsersPostedPlacesReviews")
+  place: Place! @relation(name: "PlacesReviews")
+  description: String
+  rate: Int!
+  checkin: Checkin! @relation(name: "PlaceCheckinReview")
+}
+
+type Checkin @model {
+  id: ID! @isUnique
+  place: Place! @relation(name: "PlacesCheckins")
+  user: User! @relation(name: "UsersCheckins")
+  description: String
+  checkinAt: DateTime!
+  checkoutAt: DateTime
+  userReview: UserReview @relation(name: "UserCheckinReview")
+  placeReview: PlaceReview @relation(name: "PlaceCheckinReview")
+  approved: Boolean
+  canceled: Boolean
+  rejectionDescription: String
+  approvalTime: DateTime
+}
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
