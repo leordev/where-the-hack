@@ -249,8 +249,17 @@ class CheckinHeaderViewer extends React.Component {
 
                 {!checkin.approved || moment().diff(checkin.approvalTime) <
                 LATE_CANCEL_MINS * 60 * 1000 ?
-                    <TouchableOpacity onPress={() => this._cancelCheckin(checkin)}>
-                        <Text style={{color: COLORS.RED, fontSize: 20}}>
+                    <TouchableOpacity
+                        style={{
+                            width: '100%',
+                            paddingVertical: 15,
+                            backgroundColor: COLORS.RED}}
+                        onPress={() => this._cancelCheckin(checkin)}>
+                        <Text style={{
+                            textAlign: 'center',
+                            fontSize: 20,
+                            fontFamily: 'space-mono-bold',
+                            color: 'white'}}>
                             {this.state.waiting ? 'Please Wait...' : 'Cancel Check-In'}
                         </Text>
                     </TouchableOpacity> :

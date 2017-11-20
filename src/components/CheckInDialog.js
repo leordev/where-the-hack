@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, Text, TextInput, Button, AsyncStorage, Dimensions, Alert} from 'react-native'
+import {View, Text, TextInput, Button, AsyncStorage, Dimensions, Alert, TouchableOpacity} from 'react-native'
 
 import {COLORS, GC_USER_ID} from "../constants";
 import PopupDialog, {DialogButton, DialogTitle} from "react-native-popup-dialog";
 import CreateCheckinMutation from "../mutations/CreateCheckinMutation";
+import main from "../styles/main";
 
 class CheckInDialog extends React.Component {
 
     state = {
-        checkinText: null
+        checkinText: null,
+        wait: false
     }
 
     _submitCheckIn = async () => {
@@ -21,12 +23,16 @@ class CheckInDialog extends React.Component {
             return;
         }
 
+        this.setState({wait: true})
+
         CreateCheckinMutation(
             !place.needApproval,
             this.state.checkinText,
             place.id,
             postedById,
             (err, res) => {
+                this.setState({wait: false})
+
                 if(err) {
                     console.log(err);
                     if(err.source && err.source.errors && err.source.errors.length) {
@@ -107,9 +113,14 @@ class CheckInDialog extends React.Component {
                                    onChangeText={(text) => this.setState({checkinText: text})}
                                    value={this.state.checkinText} />
                     </View>
-                    <Button
-                        title="Submit Check-In"
-                        onPress={this._submitCheckIn} />
+
+                    <TouchableOpacity
+                        style={main.bottomPrimaryButton}
+                        onPress={!this.state.wait ? this._submitCheckIn : () => null} >
+                        <Text style={main.primaryButtonText}>
+                            {this.state.wait ? 'Please wait...' : 'Submit' }
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </PopupDialog>
         );
