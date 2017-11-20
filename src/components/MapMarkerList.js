@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native'
-
+import { View, Text, TouchableHighlight, AsyncStorage } from 'react-native'
 
 import {
     createFragmentContainer,
@@ -11,21 +10,29 @@ import {MapView} from 'expo';
 import PlaceIcon from './PlaceIcon';
 import PlaceModal from './PlaceModal';
 import {NavigationActions} from "react-navigation";
+import {COLORS, GC_USER_ID} from "../constants";
 
 class MapMarkerList extends React.Component {
 
     state = {
-        modalVisible: null
+        modalVisible: null,
+        userId: null,
+        loading: null
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const { placeId } = this.props.navigation.state.params
         console.log('map mounted placeId: ', placeId)
         if(placeId)
             this.setState({modalVisible: placeId})
+
+        this.setState({loading: true})
+
+        const userId = await AsyncStorage.getItem(GC_USER_ID)
+        this.setState({userId, loading: false})
     }
 
-    componentWillReceiveProps(nextProps) {
+    async componentWillReceiveProps(nextProps) {
         const { placeId } = nextProps.navigation.state.params
         console.log('map next props placeId: ', placeId)
         if (placeId !== this.state.modalVisible)
@@ -55,9 +62,42 @@ class MapMarkerList extends React.Component {
 
     }
 
+    _getCheckinPlace = (places) => {
+        const { userId } = this.state
+
+        console.log('\n>>>> my maplist userId ', userId)
+
+        const checkedPlaces = places.filter(({node}) => {
+
+            if(node.checkins && node.checkins.edges.length) {
+
+                return node.checkins.edges.filter((checkin) => {
+
+                    const checkinNode = checkin.node
+
+                    return !checkinNode.checkoutAt && !checkinNode.canceled
+                        && checkinNode.user.id === userId
+                }).length
+            }
+        })
+
+        // console.log('\n>>>>> checkedplaces', checkedPlaces)
+
+        return checkedPlaces.length ? checkedPlaces[0].node.id : null
+    }
+
     render() {
 
         const placesEdges = this.props.viewer.allPlaces.edges
+
+        // const { loading } = this.state
+        // if(loading) {
+        //     return <View><Text>Please wait...</Text></View>
+        // }
+
+        const checkinPlace = this._getCheckinPlace(placesEdges)
+
+        console.log('\n >>>>> My checkin place is ' + checkinPlace)
 
         return (
             <View>
@@ -86,10 +126,11 @@ class MapMarkerList extends React.Component {
                                         shadowOffset: {height: 0, width: 0},
                                         borderRadius: 100,
                                         padding: 5,
-                                        borderColor: '#4989fc',
+                                        borderColor: checkinPlace === node.id ? COLORS.RED : '#4989fc',
                                         borderWidth: 2,
                                         backgroundColor: '#eaeaea'}}>
-                                        <PlaceIcon type={node.type} />
+                                        <PlaceIcon type={node.type}
+                                                   checkedIn={checkinPlace === node.id} />
                                     </View>
                                 </TouchableHighlight>
 
@@ -97,6 +138,7 @@ class MapMarkerList extends React.Component {
                                     <PlaceModal
                                         navigation={this.props.navigation}
                                         place={node}
+                                        checkedIn={checkinPlace}
                                         close={this._closeModal} />
                                     : null}
                             </View>

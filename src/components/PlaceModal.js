@@ -32,7 +32,7 @@ class PlaceModal extends React.Component {
     }
 
     render() {
-        const {place} = this.props
+        const {place, checkedIn} = this.props
 
         const hackers = (place.checkins &&
             place.checkins.edges.filter(({node}) => node.approved &&
@@ -119,6 +119,7 @@ class PlaceModal extends React.Component {
                             Please Wait... Processing Check-In...
                         </Text>
                     </View>: !this.state.showCheckIn ?
+                        !checkedIn ?
                     <TouchableOpacity
                         style={{
                             paddingVertical: 15,
@@ -131,7 +132,20 @@ class PlaceModal extends React.Component {
                             color: 'white'}}>
                             {isFull ? 'PLACE IS FULL' : 'RESERVE YOUR SPOT'}
                         </Text>
-                    </TouchableOpacity> : null }
+                    </TouchableOpacity> :
+                            <TouchableOpacity
+                                style={{
+                                    paddingVertical: 15,
+                                    backgroundColor: COLORS.ORANGE}}
+                                onPress={() => this.props.navigation.navigate('Checkins')}>
+                                <Text style={{
+                                    textAlign: 'center',
+                                    fontSize: 20,
+                                    fontFamily: 'space-mono-bold',
+                                    color: 'white'}}>
+                                    SEE MY CURRENT CHECK-IN
+                                </Text>
+                            </TouchableOpacity> : null }
             </View>
 
             <CheckInDialog show={this.state.showCheckIn}
