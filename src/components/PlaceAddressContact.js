@@ -240,7 +240,6 @@ export default class PlaceAddressContact extends React.Component {
                                     {place.url.replace('http://', '')
                                         .replace('https://', '')
                                         .replace('www.', '')
-                                        .replace('/', '')
                                         .substring(0,25)}
                                 </Text>
                                 <TouchableOpacity
