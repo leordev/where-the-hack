@@ -1,41 +1,42 @@
 ## Inspiration
 
-Everyday people get more and more connected, such as the tasks like meetings, tasks boards etc. Technologies are generating a great scenario with opportunities for remote job positions, resulting in more freelancers working on their home offices. This is really nice but in the other hand as much as people are getting connected, they also realize that they are disconnecting from physical world, missing people interactions, coffee breaks and so on. Even worse: their networking just get stuck.
+AirBnB for workspaces. For groups and individuals who don't have their own office, there's no shortage of co-working spaces but a lot of times what those spaces lack is community. It's hard to connect with others around you if you're a programmer and they're accountants, for example.
 
-So what if we adapt the Airbnb idea for home offices? Exactly! We could list our houses to bring people together to build cool stuff, improve theirselves, learn together etc. Including empowering their networking and meeting new places, motivating together to accomplish amazing things!
+Where the Hack is specifically tailored for the tech community. Developers, designers, digital marketers, etc. We want to build tools that bring this community together. Not just to hang out but to collaborate and learn from each other.
 
 ## What it does
 
-It allows users to find places to work based on their geolocation, listing people and their skillset in a real-time fashion. User can reserve a spot and then checkout with review of the place. Also, from the hosts side, it allows to add and describe their places, attaching pictures and setting how many available seats.
+Using your location, Where the Hack will find places for you to work nearby and events going on in the tech community you might want to know about. For places with limited space, you can reserve a spot through our app. Anyone can add a place so others know they can come in and work there. As a host you can manage your profile and spots available.
 
-## How I built it
+## How we built it
 
-We used react and react-native to build the app and compile into iOS and Android. To access and persist data we utilized Relay with GraphQL to access our Graphcool server.
+We used react and react-native to build both iOS and Android apps simultaneous. Set up a Graphcool server, using Relay and GraphQL to work with data.
 
-## Challenges I ran into
+## Challenges we ran into
 
-Learn Relay and GraphQL in barely 2 weeks - yes we started the hackathon very late on Nov 04th, because of Miami Developers Circle meeting - and most of the time recur to the libraries source code itself to understand how it works.
+Learn Relay and GraphQL in just under 2 weeks. We only found out about the event on Nov 04th at the Miami Facebook Developers Circle event. Building an understanding of how these technologies work by frequently reading the libraries source code.
 
-Integrate with Facebook Login, Integrate with S3 api to submit profile and place pictures, Integrate with Google Places API for autocomplete the address upon the New Place form.
+Integrate with Facebook Login, S3 api to submit profile and place images and Google Places API for address autocompletion.
 
-## Accomplishments that I'm proud of
+## Accomplishments
 
-Learn GraphQL and Relay in a short timeframe and be able to make an usable product! 
+Learn GraphQL and Relay well enough to build a working product in a short timeframe.
 
-GraphQL Subscriptions are supercool and we could provide a real-time info for the users reservations for a place spot.
+GraphQL subscriptions are great! We have real-time data on what's going on in the community, what places are 'hot', etc.
 
-We understand that we need to refactor a lot of code and make React components more reusable, but that's what we could build in our timeframe, learning about Relay and GraphQL, also sharpening react-native skills and the very first deployment of it. 
+Sharpening react-native skills and deploying on it for the first time.
 
-## What I learned
+## New for us
 
-React-Native, Relay, GraphQL and it's data architecture - deploy and publish a react-native app and also Expo App.
+React-Native, Relay, GraphQL and it's data architecture - deploy and publish a react-native and Expo app.
 
 ## What's next for WHERE THE HACK
 
-- Add places fee's and payments to incentive hosts
-- Keep track of Events on public places like coworking spaces and schools
-- Build a ranking system to reward people and places by working time, badges to incentive people
-- Integrate with other social networks like LinkedIn, GitHub and Twitter, also giving option to share Check-Ins and invite friends
+- Add places fee's and payments to incentivize hosts
+- Directory of events the community wants to know about
+- Build a ranking system to reward people as they log more hours and places as they host more people
+- Integrate with other social networks like LinkedIn, GitHub and Twitter. 
+- Share check-ins and invite friends
 - Auto checkout based on geolocation
 
 ## Demo Instructions
@@ -47,13 +48,12 @@ https://expo.io/@leordev/where-the-hack
 
 ## Installation instructions
 
-Clone the repository and in the root folder run `npm install`
+Clone the repository in the root folder and run `npm install`
 
-Run also `npm install relay-plugin` and put the correct path 
-on `.babelrc` usually as `./node_modules/babel-plugin-relay`
+Now run `npm install relay-plugin` and set the correct path 
+on `.babelrc`. Usually it's something like `./node_modules/babel-plugin-relay`
 
-Create a env.js file in the root folder of this project with
-the below content:
+Create an env.js file in the root folder with the following content:
 
 ```javascript
 export default {
@@ -62,10 +62,10 @@ export default {
 }
 ```
 
-You can also play with some constants in `src/constants.js`. 
-And also your GraphQL environment in `src/Environment.js` and 
+You can also play with constants in `src/constants.js`
+and the GraphQL environment in `src/Environment.js` and 
 `src/GcEnvironment.js`.
 
-Install Expo XDE on your machine and load the root folder on it
+Install Expo XDE on your machine and load the root folder.
 
 Click in Device > iOS simulator or Android and have fun! :)
