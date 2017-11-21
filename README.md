@@ -38,6 +38,13 @@ React-Native, Relay, GraphQL and it's data architecture - deploy and publish a r
 - Integrate with other social networks like LinkedIn, GitHub and Twitter, also giving option to share Check-Ins and invite friends
 - Auto checkout based on geolocation
 
+## Demo Instructions
+
+Open [Where The Hack](https://expo.io/@leordev/where-the-hack) under
+the Expo demo App from your iPhone or Android.
+
+https://expo.io/@leordev/where-the-hack
+
 ## Installation instructions
 
 Clone the repository and in the root folder run `npm install`
